@@ -1,0 +1,43 @@
+<div class="container mt-5">
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="input-group rounded-pill shadow">
+        <input
+          type="text"
+          class="form-control border-0"
+          placeholder="Buscar"
+          [(ngModel)]="searchQuery"
+          (input)="search()"
+        >
+        <div class="input-group-append">
+          <button class="btn btn-light rounded-right" type="button">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-3">
+    <div class="list-group" style="max-height: 400px; overflow-y: auto;">
+      <div *ngFor="let track of searchResults" class="list-group-item">
+        <div class="d-flex align-items-center">
+          <div class="mr-3">
+            <img [src]="track.album.images[0].url" alt="Artista" width="64" height="64">
+          </div>
+          <div>
+            <h5 class="mb-1 ms-3">{{ track.name }}</h5>
+            <p class="mb-1 ms-3">{{ track.artists[0].name }}</p>
+            <p class="mb-1 ms-3">{{ formatDuration(track.duration_ms) }}</p>
+            <a
+              href="{{ track.external_urls.spotify }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="ms-3"
+            >
+              Escuchar en Spotify
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
